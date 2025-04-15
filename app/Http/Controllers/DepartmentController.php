@@ -38,7 +38,6 @@ class DepartmentController extends Controller
 
         return response()->json(['message' => 'Отдел обновлен', 'department' => $department]);
     }
-    
 
     public function destroy(Request $request)
     {
