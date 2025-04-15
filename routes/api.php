@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(["prefix"=> "departments"], function () {
+    Route::get('/', [DepartmentController::class, 'get']);
+    Route::post('/store', [DepartmentController::class, 'store']);
+    Route::delete('/destroy', [DepartmentController::class, 'destroy']);
+    Route::put('/update', [DepartmentController::class, 'update']);
+});
+
+Route::group(["prefix"=> "employees"], function () {
+    Route::get('/', [EmployeeController::class, 'get']);
+    Route::post('/store', [EmployeeController::class, 'store']);
+    Route::delete('/destroy', [EmployeeController::class, 'destroy']);
+    Route::put('/update', [EmployeeController::class, 'update']);
 });
